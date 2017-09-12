@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>Loops</title>
+        <style>
+        
+            #object{
+                background-color: blue;
+                position:relative;
+            }
+        
+        </style>
+    
+    </head>
+    
+    <body>
+        <h1>Test Your Reactions!</h1>
+        <p>Click on the boxes as quickly as you can!</p>
+        <p id="elapsedTime"><strong>Your time:</strong></p>
+        <p id="bestTime"><strong></strong></p>
+      
+        <div id="object"></div>
+        <script type="text/javascript">
+            var startTime = new Date().getTime();
+            var i = 0;
+            var scores = [];
+                create_object();
+                document.getElementById("object").onclick = function (){
+                    document.getElementById("object").style.display = "none";
+                    
+                var endTime = new Date().getTime();
+                var timeSpent = endTime - startTime;
+                scores[i] = timeSpent;
+                var bestTime = Math.min.apply(null,scores);
+                i++;
+                
+                document.getElementById("elapsedTime").innerHTML = "Your time: " + (timeSpent/1000) + "s";
+                document.getElementById("bestTime").innerHTML = "Best time: " + bestTime + "s";
+                    
+                    var delay;
+                    delay = Math.floor((Math.random() * 2000) + 50);
+                    console.log(delay);
+                    
+                    setTimeout(create_object, delay);
+                }
+                
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++ ) {
+                            color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+                
+            function create_object(){
+                var shape;
+                var width;
+                var height;
+                var top;
+                var left;
+                var object = document.getElementById("object");
+                shape = Math.floor((Math.random() * 2) + 0);
+                width = Math.floor((Math.random() * 201) + 100);
+                height = width;
+                top = Math.floor((Math.random() * 201) + 100);
+                left = Math.floor((Math.random() * 601) + 100);
+                
+                if (shape == 0) {
+                    object.style.top = top + "px";
+                    object.style.left = left + "px";
+                    object.style.width = width + "px";
+                    object.style.height = height + "px";
+                    object.style.backgroundColor = getRandomColor();
+                    object.style.borderRadius = "50%";
+                }
+                else {
+                    object.style.top = top + "px";
+                    object.style.left = left + "px";
+                    object.style.width = width + "px";
+                    object.style.height = height + "px";
+                    object.style.backgroundColor = getRandomColor();
+                    object.style.borderRadius = "0px";
+                }
+                
+                document.getElementById("object").style.display = "block";
+                startTime = new Date().getTime();
+                
+            }
+            
+                
+        </script>
+        
+    
+    </body>
+
+
+</html>
